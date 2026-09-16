@@ -15,9 +15,9 @@ navv.addEventListener("click",(e)=>{
         function printDa(res){
 
        for(let data in res){
-
         if(res=="registerstudents"){
             console.log("registered");
+            // handlingForm();
         }
         else{
         if(typeof(res[data])==="object" && res[data]!=null){
@@ -48,50 +48,50 @@ let Mobile=document.getElementById("Mobile");
 let email=document.getElementById("email");
 
 let dataArray=getDataFromLs("info");
-createDataFromLs(dataArray);
+// createDataFromLs(dataArray);
 
-function setDataInLs(){
-    localStorage.setItem("UserInfo",JSON.stringify(dataArray));
-}
+// function setDataInLs(){
+//     localStorage.setItem("UserInfo",JSON.stringify(dataArray));
+// }
 
-function getDataFromLs(){
-    let array=localStorage.getItem("UserInfo");
-    console.log(array);
-    if(!array){
-        return [];
-    }
-    return JSON.parse(array);
-}
-function createDataFromLs(dataArray){
+// function getDataFromLs(){
+//     let array=localStorage.getItem("UserInfo");
+//     console.log(array);
+//     if(!array){
+//         return [];
+//     }
+//     return JSON.parse(array);
+// }
+// function createDataFromLs(dataArray){
    
-    dataArray.forEach(element => {
-      dataPrint(element);
-    });
-}
+//     dataArray.forEach(element => {
+//       dataPrint(element);
+//     });
+// }
 
-function dataPrint(element){
-          info.innerHTML+=`<tr>
-<td>
-${res.fname}
-</td>
-<td>
-${res.lname}
-</td>
-<td>
-${res.streetAdd}
-</td>
-<td>
-${res.postcode}
-</td>
-<td>
-${res.mobile}
-</td>
-<td>
-${res.email}
-</td>
-</tr>`
+// function dataPrint(element){
+//           info.innerHTML+=`<tr>
+// <td>
+// ${res.fname}
+// </td>
+// <td>
+// ${res.lname}
+// </td>
+// <td>
+// ${res.streetAdd}
+// </td>
+// <td>
+// ${res.postcode}
+// </td>
+// <td>
+// ${res.mobile}
+// </td>
+// <td>
+// ${res.email}
+// </td>
+// </tr>`
 
-}
+// }
 
 let submit=document.getElementById("submit");
 
@@ -106,22 +106,23 @@ let obj={
     email: email.value,
 }
 dataArray.push(obj);
-setDataInLs();
-// fetch('/registerstudents',{
-//     method: "POST",
-//     headers: {
-//         "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(obj)
-// })
-// .then((res,err)=>{
-//     if(res){
-//        console.log(res);
-//     }
-//     else{
-//         console.log(err);
-//     }
-// })
-// dataPrint(obj);
+// setDataInLs();
+fetch('/registerstudents',{
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify(obj)
+})
+.then((res,err)=>{
+    if(res){
+       console.log(res);
+    }
+    else{
+        console.log(err);
+    }
+})
+dataPrint(obj);
 })
 }
+handlingForm();

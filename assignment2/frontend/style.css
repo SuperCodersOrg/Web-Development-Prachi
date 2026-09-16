@@ -7,6 +7,7 @@ display: flex;
 flex-direction: column;
 text-align: center;
 justify-content: center;
+line-height: 2rem;
 }
 nav{
     background-color: beige;
@@ -15,11 +16,11 @@ nav{
  p{
     font-size: 20px;
  }
-#home{
+/* #home{
     font-size: 20px;
     margin-top: 10vh;
     columns: black;
-}
+} */
 h1{
     text-align: left;
 }
@@ -27,16 +28,16 @@ h2{
     font-size: 40px;
     color: blue;
 }
-li{
+/* li{
     font-size: 20px;
     text-decoration: none;
     list-style: none;
     line-height: 2rem;
     
-}
+} */
 table{
     font-size: 25px;
-    line-height: 4rem;
+    line-height: 1rem;
     padding-left: 37vw;
 
 }
