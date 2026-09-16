@@ -1,0 +1,22 @@
+{
+  "name": "Bachelor of Technology",
+  "shortName": "B.Tech",
+  "link":"/btech",
+  "duration": "4 Years",
+  "seats": 180,
+  "eligibility": "10+2 with Physics, Chemistry and Mathematics",
+  "description": "B.Tech provides technical and engineering education with practical training and industry exposure.",
+  "specializations": [
+    "Computer Science and Engineering",
+    "Artificial Intelligence and Machine Learning",
+    "Electronics and Communication Engineering"
+  ],
+  "subjects": [
+    "Programming",
+    "Data Structures",
+    "Database Management",
+    "Computer Networks",
+    "Operating Systems",
+    "Artificial Intelligence"
+  ]
+}

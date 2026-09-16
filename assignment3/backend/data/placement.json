@@ -1,0 +1,27 @@
+{
+  "title": "Placement and Training",
+  "placementRate": "92%",
+  "studentsEligible": 520,
+  "studentsPlaced": 480,
+  "companiesVisited": 85,
+  "highestPackage": "18 LPA",
+  "averagePackage": "6.5 LPA",
+  "topRecruiters": [
+    "TCS",
+    "Infosys",
+    "Wipro",
+    "Accenture",
+    "Cognizant",
+    "Deloitte",
+    "Capgemini",
+    "Tech Mahindra"
+  ],
+  "trainingPrograms": [
+    "Aptitude Training",
+    "Coding Practice",
+    "Technical Interview Preparation",
+    "Communication Skills",
+    "Resume Building",
+    "Mock Interviews"
+  ]
+}

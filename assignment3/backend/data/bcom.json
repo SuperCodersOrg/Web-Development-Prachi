@@ -1,0 +1,17 @@
+{
+  "name": "Bachelor of Commerce",
+  "shortName": "B.Com",
+  "link":"/bcom",
+  "duration": "3 Years",
+  "seats": 120,
+  "eligibility": "10+2 from a recognized board",
+  "description": "B.Com provides knowledge of accounting, finance, taxation, economics and business management.",
+  "subjects": [
+    "Financial Accounting",
+    "Business Economics",
+    "Corporate Accounting",
+    "Business Law",
+    "Taxation",
+    "Financial Management"
+  ]
+}

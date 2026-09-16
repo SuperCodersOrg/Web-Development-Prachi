@@ -1,0 +1,18 @@
+{
+  "title": "Welcome to ABC College of Technology",
+  "description": "Empowering students through quality education, practical learning and industry exposure.",
+  "highlights": [
+    "Industry-oriented education",
+    "Experienced faculty",
+    "Modern infrastructure",
+    "Placement assistance",
+    "Technical workshops",
+    "Student development programs"
+  ],
+  "statistics": {
+    "students": 2500,
+    "faculty": 120,
+    "courses": 4,
+    "placementRate": "92%"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "address": "ABC College of Technology, Panipat, Haryana, India",
+  "phone": "+91-9876543210",
+  "email": "info@abccollege.edu",
+  "website": "www.abccollege.edu",
+  "officeHours": {
+    "mondayToFriday": "9:00 AM - 5:00 PM",
+    "saturday": "9:00 AM - 1:00 PM",
+    "sunday": "Closed"
+  }
+}

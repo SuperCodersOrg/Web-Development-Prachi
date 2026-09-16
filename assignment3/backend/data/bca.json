@@ -1,0 +1,18 @@
+{
+  "name": "Bachelor of Computer Applications",
+  "shortName": "BCA",
+  "link":"/bca",
+  "duration": "3 Years",
+  "seats": 120,
+  "eligibility": "10+2 with Mathematics or Computer Science",
+  "description": "BCA focuses on programming, web development, databases, software development and computer applications.",
+  "subjects": [
+    "C Programming",
+    "C++",
+    "JavaScript",
+    "Data Structures",
+    "Database Management",
+    "Web Development",
+    "Operating Systems"
+  ]
+}
