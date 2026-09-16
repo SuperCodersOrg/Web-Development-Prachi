@@ -2,6 +2,7 @@ const http = require('http');
 const port = 3500;
 const fs = require('fs');
 const path = require('path');
+const { json } = require('stream/consumers');
 
 // console.log(http);
 
@@ -13,44 +14,31 @@ const server = http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-    // if(req.method==='OPTIONS'){
-    //     res.writeHead(200);
-    //     res.end();
-    // return;
-    // }
-    // if((req.url==='/' || req.url==='/home') && req.method==='GET'){
-    //     res.statusCode=200;
-    //     res.statusMessage="Successful";
-    //     res.setHeader('content-type','text/html');
-    //     const data=fs.readFileSync("frontend/index.html",'utf8');
-    //     res.end(data);
-    //     // res.end("home");
-    // }
     if ((req.url === '/' || req.url === '/home')) {
         res.statusCode = 200;
         res.statusMessage = "Successful";
-        res.setHeader('content-type', 'text/html');
+        res.setHeader('content-type', 'application/json');
 
-        const data = fs.readFileSync('../frontend/home.html', 'utf8');
-        res.end(data);
+        const data = fs.readFileSync(path.join(__dirname,'data','home.json'),'utf8');
+        // console.log(path.join(__dirname,'data','home.json'))
+;        res.end(data);
 
     }
     else if (req.url === '/about') {
         res.statusCode = 200;
         res.statusMessage = "Successful";
-        res.setHeader('content-type', 'text/html');
+       res.setHeader('content-type', 'application/json');
 
-        const data = fs.readFileSync('../frontend/about.html', 'utf8');
+        const data = fs.readFileSync(path.join(__dirname,'data','about.json'),'utf8');
         res.end(data);
 
     }
     else if (req.url === '/course') {
         res.statusCode = 200;
         res.statusMessage = "Successful";
-        res.setHeader('content-type', 'text/html');
+        res.setHeader('content-type', 'application/json');
 
-        // const data = fs.readFileSync('assignment2/frontend/course.html', 'utf8');
-        const data=fs.readFileSync('../frontend/course.html', 'utf8');
+        const data = fs.readFileSync(path.join(__dirname,'data','course.json'),'utf8');
         res.end(data);
 
     }
@@ -59,71 +47,76 @@ const server = http.createServer((req, res) => {
             res.statusCode = 200;
             res.statusMessage = "Successful";
 
-            res.setHeader('Content-Type', 'text/html');
-            const data = fs.readFileSync('../frontend/bca.html', 'utf8');
-            // const data = fs.readFileSync(join.path(__dirname,'..',"frontend","bca.html"), 'utf8');
+            res.setHeader('Content-Type', 'application/json');
+            
+            const data = fs.readFileSync(path.join(__dirname,'data','bca.json'), 'utf8');
 
             res.end(data);
 
         }
         else if (half[2] === 'btech') {
-            res.setHeader('Content-Type', 'text/html');
-            const data = fs.readFileSync('../frontend/btech.html', 'utf8');
+            res.setHeader('Content-Type', 'application/json');
+            
+            const data = fs.readFileSync(path.join(__dirname,'data','btech.json'), 'utf8');
             res.end(data);
 
         }
         else if (half[2] === 'bcom') {
-            res.setHeader('Content-Type', 'text/html');
-            const data = fs.readFileSync('../frontend/bcom.html', 'utf8');
+            res.setHeader('Content-Type', 'application/json');
+            
+            const data = fs.readFileSync(path.join(__dirname,'data','bcom.json'), 'utf8');
             res.end(data);
 
         }
         else if (half[2] === 'bba') {
-            res.setHeader('Content-Type', 'text/html');
-            const data = fs.readFileSync('../frontend/bba.html', 'utf8');
+           res.setHeader('Content-Type', 'application/json');
+            
+            const data = fs.readFileSync(path.join(__dirname,'data','bba.json'), 'utf8');
             res.end(data);
         }
     }
     else if (req.url === '/student') {
         res.statusCode = 200;
         res.statusMessage = "Successful";
-        res.setHeader('content-type', 'text/html');
+        res.setHeader('content-type', 'application/json');
 
-        const data = fs.readFileSync('../frontend/student.html', 'utf8');
+        const data = fs.readFileSync(path.join(__dirname,'data','student.json'),'utf8');
         res.end(data);
 
     }
     else if (req.url === '/contact') {
         res.statusCode = 200;
         res.statusMessage = "Successful";
-        res.setHeader('content-type', 'text/html');
+res.setHeader('content-type', 'application/json');
 
-        const data = fs.readFileSync('../frontend/contact.html', 'utf8');
+        const data = fs.readFileSync(path.join(__dirname,'data','contact.json'),'utf8');
         res.end(data);
 
     }
     else if (req.url === '/facilities') {
         res.statusCode = 200;
         res.statusMessage = "Successful";
-        res.setHeader('content-type', 'text/html');
+        res.setHeader('content-type', 'application/json');
 
-        const data = fs.readFileSync('../frontend/facilities.html', 'utf8');
+        const data = fs.readFileSync(path.join(__dirname,'data','facilities.json'),'utf8');
         res.end(data);
 
     }
     else if (req.url === '/placement') {
         res.statusCode = 200;
         res.statusMessage = "Successful";
-        res.setHeader('content-type', 'text/html');
-        const data = fs.readFileSync('../frontend/placement.html', 'utf8');
+res.setHeader('content-type', 'application/json');
+
+        const data = fs.readFileSync(path.join(__dirname,'data','placement.json'),'utf8');
         res.end(data);
     
     }
     else if (req.url === '/registerstudents' && req.method==='GET') {
         res.statusCode = 200;
         res.statusMessage = "Successful";
-        res.setHeader('content-type', 'text/html');
-        const data = fs.readFileSync('../frontend/registerstudents.html', 'utf8');
+        res.setHeader('content-type', 'application/json');
+
+        const data = fs.readFileSync(path.join(__dirname,'data','registerstudents.json'),'utf8');
         res.end(data);
     }
     else if(req.url==='/registerstudents' && req.method==='POST'){
@@ -132,6 +125,16 @@ const server = http.createServer((req, res) => {
         // const data=fs.readFileSync('frontend/registerstudents.html','utf8');
         // res.end(data);
         res.end("Data stored Successfully");
+    }
+    else if(req.url==='/style.css'){
+        const data=fs.readFileSync(path.join(__dirname,'..','frontend','style.css'),'utf8');
+        res.setHeader('Content-Type','text/css');
+        res.end(data);
+    }
+    else if(req.url==='/style.js'){
+        const data=fs.readFileSync(path.join(__dirname,'..','frontend','style.js'),'utf8');
+        res.setHeader('Content-Type','text/javascript');
+        res.end(data);
     }
     else {
 

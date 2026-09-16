@@ -1,0 +1,42 @@
+{
+  "title": "Our Courses",
+  "description": "Explore our undergraduate and professional courses designed to provide students with academic knowledge, practical skills and career opportunities.",
+  "courses": [
+    {
+      "id": 1,
+      "name": "BBA",
+      "fullName": "Bachelor of Business Administration",
+      "duration": "3 Years",
+      "seats": 120,
+      "eligibility": "10+2 from a recognized board",
+      "mode": "Regular"
+    },
+    {
+      "id": 2,
+      "name": "BCA",
+      "fullName": "Bachelor of Computer Applications",
+      "duration": "3 Years",
+      "seats": 120,
+      "eligibility": "10+2 with Mathematics or Computer Science",
+      "mode": "Regular"
+    },
+    {
+      "id": 3,
+      "name": "B.Com",
+      "fullName": "Bachelor of Commerce",
+      "duration": "3 Years",
+      "seats": 120,
+      "eligibility": "10+2 from a recognized board",
+      "mode": "Regular"
+    },
+    {
+      "id": 4,
+      "name": "B.Tech",
+      "fullName": "Bachelor of Technology",
+      "duration": "4 Years",
+      "seats": 180,
+      "eligibility": "10+2 with Physics, Chemistry and Mathematics",
+      "mode": "Regular"
+    }
+  ]
+}

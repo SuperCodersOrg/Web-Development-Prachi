@@ -1,0 +1,58 @@
+{
+  "title": "Student Registration",
+  "fields": {
+    "firstName": {
+      "label": "First Name",
+      "required": true,
+      "type": "text"
+    },
+    "Lastname": {
+      "label": "Last Name",
+      "required": true,
+      "type": "text"
+    },
+    "streetaddress": {
+      "label": "Street Address",
+      "required": false,
+      "type": "text"
+    },
+    "Town/City": {
+      "label": "Town/City",
+      "required": false,
+      "type": "text"
+    },
+    "Postcode/Zip": {
+      "label": "Postcode/Zip",
+      "required": false,
+      "type": "text"
+    },
+    "Telephone": {
+      "label": "Telephone",
+      "required": false,
+      "type": "text"
+    },
+    "Mobile": {
+      "label": "Mobile",
+      "required": false,
+      "type": "text"
+    },
+    "email": {
+      "label": "Email",
+      "required": true,
+      "type": "email"
+    }
+  },
+  "requiredFields": [
+    "firstName",
+    "Lastname",
+    "email"
+  ],
+  "tableColumns": [
+    "First Name",
+    "Last Name",
+    "Street",
+    "Postcode",
+    "Mobile",
+    "Email"
+  ]
+}

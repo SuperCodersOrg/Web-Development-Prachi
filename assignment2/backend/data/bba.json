@@ -1,0 +1,16 @@
+{
+  "name": "Bachelor of Business Administration",
+  "shortName": "BBA",
+  "duration": "3 Years",
+  "seats": 120,
+  "eligibility": "10+2 from a recognized board",
+  "description": "BBA focuses on business management, marketing, finance, human resources and entrepreneurship.",
+  "subjects": [
+    "Principles of Management",
+    "Marketing Management",
+    "Financial Management",
+    "Human Resource Management",
+    "Business Communication",
+    "Entrepreneurship"
+  ]
+}

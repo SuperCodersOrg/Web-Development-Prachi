@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Student Registration Form</title>
+</head>
+<body>
+    <div id="mainPage">
+
+            <table id="reg">
+                <form method="post">
+                    <!-- <p>Please enter your personal details</p> -->
+                    <tr>
+                        <td><label for="firstname">First Name:*</label></td>
+
+                        <td><input type="text" id="firstname" name="firstName" placeholder="enter first name" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><label for="Lastname">Last Name:*</label></td>
+
+                        <td><input type="text" id="Lastname" name="Lastname" required /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="streetaddress">Street Address:</label></td>
+
+                        <td><input type="text" name="streetaddress" id="streetaddress" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="Town/City">Town/City:</label></td>
+
+                        <td><input type="text" name="Town/City" id="Town/City" />
+                    </tr>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td><label for="Postcode/Zip">Postcode/Zip:</label></td>
+                        <td><input type="text" name="Postcode/Zip" id="Postcode/Zip" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="Telephone">Telephone:</label></td>
+                        <td><input type="text" name="Telephone" id="Telephone" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="Mobile">Mobile:</label></td>
+                        <td><input type="text" name="Mobile" id="Mobile" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="email">Email:*</label></td>
+                        <td><input type="email" name="email" id="email" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <p>Fields marked * are required.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <center><input type="submit" id="submit" /></center>
+                        </td>
+                    </tr>
+                </form>
+            </table>
+
+            <table id="forms" border="1">
+        <thead>
+            <tr>
+                <th>First Name: </th>
+                <th>Last Name: </th>
+                <th>Street: </th>
+                <th>Postcode: </th>
+                <th>Mobile: </th>
+                <th>Email: </th>
+            </tr>
+        </thead>
+        <tbody id="info">
+            
+        </tbody>
+    </table>
+        </div>
+        <script src="style.js"></script>
+</body>
+</html>

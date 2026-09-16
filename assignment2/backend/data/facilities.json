@@ -1,0 +1,29 @@
+{
+  "title": "Campus Facilities",
+  "facilities": [
+    {
+      "name": "Computer Labs",
+      "description": "Well-equipped computer laboratories with modern systems and software."
+    },
+    {
+      "name": "Library",
+      "description": "Books, journals and digital learning resources for students."
+    },
+    {
+      "name": "Smart Classrooms",
+      "description": "Technology-enabled classrooms for interactive learning."
+    },
+    {
+      "name": "Sports Ground",
+      "description": "Facilities for indoor and outdoor sports activities."
+    },
+    {
+      "name": "Cafeteria",
+      "description": "Clean and comfortable cafeteria providing food and refreshments."
+    },
+    {
+      "name": "Wi-Fi Campus",
+      "description": "Internet connectivity available across the campus."
+    }
+  ]
+}
