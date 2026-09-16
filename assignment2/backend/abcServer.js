@@ -14,6 +14,11 @@ const server = http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
+    if(req.method==='OPTIONS'){
+            res.sendStatus(200);
+            return;
+        }
+
     if ((req.url === '/' || req.url === '/home')) {
         res.statusCode = 200;
         res.statusMessage = "Successful";
@@ -80,7 +85,7 @@ const server = http.createServer((req, res) => {
         res.statusMessage = "Successful";
         res.setHeader('content-type', 'application/json');
 
-        const data = fs.readFileSync(path.join(__dirname,'data','student.json'),'utf8');
+        const data = fs.readFileSync('student.json','utf8');
         res.end(data);
 
     }
@@ -105,26 +110,35 @@ res.setHeader('content-type', 'application/json');
     else if (req.url === '/placement') {
         res.statusCode = 200;
         res.statusMessage = "Successful";
-res.setHeader('content-type', 'application/json');
 
         const data = fs.readFileSync(path.join(__dirname,'data','placement.json'),'utf8');
+        res.setHeader('content-type', 'application/json');
         res.end(data);
     
     }
     else if (req.url === '/registerstudents' && req.method==='GET') {
         res.statusCode = 200;
         res.statusMessage = "Successful";
-        res.setHeader('content-type', 'application/json');
+        // res.setHeader('content-type', 'application/json');
 
-        const data = fs.readFileSync(path.join(__dirname,'data','registerstudents.json'),'utf8');
-        res.end(data);
+        // const data = fs.readFileSync(path.join(__dirname,'data','registration.json'),'utf8');
+        // res.end(data);
+        req.body='';
+        req.on('data',(dValue)=>{
+            body+=dValue;
+        })
     }
     else if(req.url==='/registerstudents' && req.method==='POST'){
-        // res.setHeader('Content-Type','text/html');
+    
+        // const data=fs.readFileSync(path.join(__dirname,'data','registration.json'),'utf8');
+        // res.setHeader('Content-Type','application/json');
 
-        // const data=fs.readFileSync('frontend/registerstudents.html','utf8');
         // res.end(data);
-        res.end("Data stored Successfully");
+        // res.end("Data stored Successfully");
+        // req.body='';
+        // req.on('data',(dValue)=>{
+        //     body+=dValue;
+        // })
     }
     else if(req.url==='/style.css'){
         const data=fs.readFileSync(path.join(__dirname,'..','frontend','style.css'),'utf8');
