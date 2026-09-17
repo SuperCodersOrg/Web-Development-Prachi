@@ -12,10 +12,10 @@ const server = http.createServer((req, res) => {
 
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
+    res.setHeader('Access-Control-Allow-Headers', "origin , X-Requested-With, Content-Type, Accept");
+    
     if(req.method==='OPTIONS'){
-            res.sendStatus(200);
+            res.statusCode = 200;
             return;
         }
 
@@ -122,7 +122,7 @@ res.setHeader('content-type', 'application/json');
         // res.setHeader('content-type', 'application/json');
 
         // const data = fs.readFileSync(path.join(__dirname,'data','registration.json'),'utf8');
-        // res.end(data);
+        res.end("data");   
    
     }
     else if(req.url==='/registerstudents' && req.method==='POST'){
@@ -134,8 +134,11 @@ res.setHeader('content-type', 'application/json');
         
         // req.body='';
         let body='';
+        console.log(body);
         req.on('data',(dValue)=>{
             body+=dValue;
+            })
+            console.log("body data:",body);
 
             let file=fs.readFileSync('registration.json','utf8');
             let dataArray=json.parse(file);
@@ -144,7 +147,7 @@ res.setHeader('content-type', 'application/json');
             dataArray.students.push(newData);
 
             fs.writeFileSync('registration.json',JSON.stringify(dataArray,null,2),'utf8');
-        })
+        
               // fs.writeFileSync("registration.json")
         res.end("sucessful");
     }

@@ -9,7 +9,7 @@
 <body>
     <div id="mainPage">
             <table id="reg">
-                <form method="post">
+                <form method="post" action="/registerstudents">
                     <!-- <p>Please enter your personal details</p> -->
                     <tr>
                         <td><label for="firstname">First Name:*</label></td>
@@ -79,6 +79,99 @@
         </tbody>
     </table>
         </div>
+        <script >
+            function handlingForm(){
+let firstName=document.getElementById("firstname");
+let Lastname=document.getElementById("Lastname");
+let streetaddress=document.getElementById("streetaddress");
+let Town=document.getElementById("Town/City");
+
+let Postcode=document.getElementById("Postcode/Zip");
+let Telephone=document.getElementById("Telephone");
+let Mobile=document.getElementById("Mobile");
+let email=document.getElementById("email");
+
+// let dataArray=getDataFromLs("info");
+// createDataFromLs(dataArray);
+
+// function setDataInLs(){
+//     localStorage.setItem("UserInfo",JSON.stringify(dataArray));
+// }
+
+// function getDataFromLs(){
+//     let array=localStorage.getItem("UserInfo");
+//     console.log(array);
+//     if(!array){
+//         return [];
+//     }
+//     return JSON.parse(array);
+// }
+// function createDataFromLs(dataArray){
+   
+//     dataArray.forEach(element => {
+//       dataPrint(element);
+//     });
+// }
+
+// function dataPrint(element){
+//           info.innerHTML+=`<tr>
+// <td>
+// ${res.fname}
+// </td>
+// <td>
+// ${res.lname}
+// </td>
+// <td>
+// ${res.streetAdd}
+// </td>
+// <td>
+// ${res.postcode}
+// </td>
+// <td>
+// ${res.mobile}
+// </td>
+// <td>
+// ${res.email}
+// </td>
+// </tr>`
+
+// }
+
+let submit=document.getElementById("submit");
+console.log(submit);
+submit.addEventListener("click",(event)=>{
+event.preventDefault();
+console.log("event hodden");
+let obj={
+    fname: firstName.value,
+    streetAdd: streetaddress.value,
+    postcode: Postcode.value,
+    mobile: Mobile.value,
+    email: email.value,
+}
+console.log(obj);
+// dataArray.push(obj);
+// setDataInLs();
+fetch(`http://localhost:3500/registerstudents`,{
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify(obj)
+})
+.then((res,err)=>{
+    if(res){
+       console.log(res);
+    }
+    else{
+        console.log(err);
+    }
+})
+// dataPrint(obj);
+})
+}
+handlingForm();
+        </script>
         <script src="style.js"></script>
 </body>
 </html>
