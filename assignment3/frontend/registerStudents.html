@@ -9,7 +9,7 @@
     <div id="registerstudents">
 
             <table id="reg">
-                <form method="post">
+                <form method="post" action="/registerstudents">
                     <!-- <p>Please enter your personal details</p> -->
                     <tr>
                         <td><label for="firstname">First Name:*</label></td>
@@ -62,23 +62,53 @@
                     </tr>
                 </form>
             </table>
-
-            <table id="forms" border="1">
-        <thead>
-            <tr>
-                <th>First Name: </th>
-                <th>Last Name: </th>
-                <th>Street: </th>
-                <th>Postcode: </th>
-                <th>Mobile: </th>
-                <th>Email: </th>
-            </tr>
-        </thead>
-        <tbody id="info">
-            
-        </tbody>
-    </table>
         </div>
+        <script>
+            
+function handlingForm(){
+let firstName=document.getElementById("firstname");
+let Lastname=document.getElementById("Lastname");
+let streetaddress=document.getElementById("streetaddress");
+let Town=document.getElementById("Town/City");
+
+let Postcode=document.getElementById("Postcode/Zip");
+let Telephone=document.getElementById("Telephone");
+let Mobile=document.getElementById("Mobile");
+let email=document.getElementById("email");
+
+let submit=document.getElementById("submit");
+
+submit.addEventListener("click",(event)=>{
+event.preventDefault();
+console.log("event hodden");
+let obj={
+    fname: firstName.value,
+    streetAdd: streetaddress.value,
+    postcode: Postcode.value,
+    mobile: Mobile.value,
+    email: email.value,
+}
+
+fetch('http://localhost:3300/registerstudents',{
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify(obj)
+})
+.then((res,err)=>{
+    if(res){
+       console.log(res);
+    }
+    else{
+        console.log(err);
+    }
+})
+
+})
+}
+handlingForm();
+        </script>
         <script src="style.js"></script>
 </body>
 </html>

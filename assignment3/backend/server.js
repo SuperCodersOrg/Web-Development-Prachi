@@ -6,7 +6,6 @@ const path=require('path');
 app.use(express.json());
 const frontend=path.join(__dirname,"frontend");
 app.use(express.static(frontend));
-// const url=new URL()
 
 app.use((req,res,next)=>{
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -15,7 +14,8 @@ app.use((req,res,next)=>{
 
     if(req.method==='OPTIONS'){
             res.sendStatus(200);
-            return;
+           res.end("avbg");
+        return;
         }
         next();
 })
@@ -39,20 +39,12 @@ app.get('/course',(req,res)=>{
     res.send(data);
 })
 app.get('/course/:option',(req,res)=>{
-    if(Number(req.params.option)){
-        console.log("its a number");
-        res.send(req.option);
-    }
+
     console.log(req.params);
-    const data=fs.readFileSync(path.join(__dirname,'..',"frontend",Option.html),'utf8');
+    const data=fs.readFileSync(path.join(__dirname,'data',req.params.option+'.json'),'utf8');
     console.log(data);
 
-    console.log(req.params.option);
     res.send(data);
-
-    // console.log(req.query);
-    // console.log(req.query.name);
-    // res.send(req.query.name);
 })
 
 app.get('/student',(req,res)=>{
@@ -70,12 +62,21 @@ app.get('/placement',(req,res)=>{
     res.send(data);
 })
 
-app.get('/registerstudents',(req,res)=>{
-    const data=fs.readFileSync(path.join(__dirname,'data','registerstudents.json'),'utf8');
+app.get('/contact',(req,res)=>{
+    const data=fs.readFileSync(path.join(__dirname,'data','contact.json'),'utf8');
     res.send(data);
 })
 
+app.get('/registerstudents',(req,res)=>{
+    // const data=fs.readFileSync(path.join(__dirname,'data','registerstudents.json'),'utf8');
+    // res.send(data);
+    res.status(200).send("successful");
+})
+
 app.post('/registerstudents',(req,res)=>{
+
+    let file=fs.readFileSync('registration.json','utf8');
+
     console.log(req.body);
     const data=req.data;
     
