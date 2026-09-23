@@ -1,0 +1,14 @@
+const express=require('express');
+const app=express();
+app.use(express.json());
+app.use(express.static('public'));
+
+const studentRoutes=require('./routes/students'); // agr y na lia to baki jagha particular routr len padega
+const teacherRouters=require('./routes/teachers');
+
+app.use('/student',studentRoutes);//folders ka name h
+app.use('/teacher',teacherRouters); //jitnn bhi teacges kmrouts  h  vo srae usi router vali files pr jayega datsda
+
+app.listen(3200,(req,res)=>{
+    console.log("login Server!");
+})

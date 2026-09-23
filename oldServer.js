@@ -3,7 +3,7 @@ const port =3300;
 console.log(http);
 
 const server=http.createServer((req,res)=>{// all req and response handle here
-//     console.log(res); 
+// console.log(res); 
 // res.end("hello from node js");
 // res.statusCode=200;
 // res.statusMessage="cjdds";

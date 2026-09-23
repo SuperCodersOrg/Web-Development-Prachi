@@ -27,7 +27,7 @@ const server = http.createServer((req, res) => {
 
         const data = fs.readFileSync(path.join(__dirname, 'data', 'home.json'), 'utf8');
         // console.log(path.join(__dirname,'data','home.json'))
-        ; res.end(data);
+         res.end(data);
 
     }
     else if (req.url === '/about') {
@@ -140,7 +140,7 @@ const server = http.createServer((req, res) => {
             body += dValue;
         });
         
-req.on('end',()=>{
+    req.on('end',()=>{
     console.log("body data:", body);
         let file = fs.readFileSync('registration.json', 'utf8');
         let dataArray = JSON.parse(file);
@@ -153,7 +153,7 @@ req.on('end',()=>{
         // fs.writeFileSync("registration.json")
         res.end("sucessful");
 })
-    }
+    } 
     else if (req.url === '/style.css') {
         const data = fs.readFileSync(path.join(__dirname, '..', 'frontend', 'style.css'), 'utf8');
         res.setHeader('Content-Type', 'text/css');

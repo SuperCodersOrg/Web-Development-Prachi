@@ -13,8 +13,8 @@ app.use((req,res,next)=>{
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
     if(req.method==='OPTIONS'){
-            res.sendStatus(200);
-           res.end("avbg");
+           
+           res.status(200).send("avbg");
         return;
         }
         next();
@@ -75,13 +75,16 @@ app.get('/registerstudents',(req,res)=>{
 
 app.post('/registerstudents',(req,res)=>{
 
-    let file=fs.readFileSync('registration.json','utf8');
+    let file=fs.readFileSync(path.join(__dirname,'data','registration.json'),'utf8');
 
     console.log(req.body);
     const data=req.data;
-    
+
+
+    fs.writeFileSync('registration.json',req.body);
+
     console.log(data);
-    res.send(data);
+    res.status(200).send(data);
 })
 
 app.get('',(req,res)=>{
