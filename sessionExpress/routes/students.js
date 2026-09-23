@@ -17,23 +17,23 @@ router.use(express.json());
 
 router.get('/',(req,res)=>{
 
-// if(req.session.role!='students')
-//    return res.redirect('/teacher/home');
+if(req.session.role!='students')
+   return res.redirect('/teacher/home');
 console.log("ShtmL")
 res.redirect('/studentHome.html');
 })
 
 router.get('/home',(req,res)=>{
 
-// if(req.session.role!='students')
-//    return res.redirect('/teacher/home');
+if(req.session.role!='students')
+   return res.redirect('/teacher/home');
 console.log("ShtmL")
 res.redirect('/studentHome.html');
 })
 
 router.get("/result",(req,res)=>{
-    // if(req.session.role!='students')
-//    return res.redirect('/teacher/home');
+    if(req.session.role!='students')
+   return res.redirect('/teacher/home');
 console.log("SRhtmL")
 res.redirect('/studentResult.html');
 });
