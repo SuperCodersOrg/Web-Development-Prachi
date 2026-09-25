@@ -4,20 +4,20 @@ const router=express.Router();
 
 router.use(express.json());
 router.use(express.static("public"));
+app.use('/auth', authoRoutes);
 
-
-const authentication=(req,res,next)=>{
-    if(req.session && req.session.user){
-        return next();
-    }
-    return res.redirect("/login.html");
-}
+// const authentication=(req,res,next)=>{
+//     if(req.session && req.session.user){
+//         return next();
+//     }
+//     return res.redirect("/login.html");
+// }
 const users={
     student: { password: "787" ,  role: "student" },
     teacher: { password: "5678", role: "teacher" },
 };
 
-console.log(authentication);
+// console.log(authentication);
 
 router.get('/signin',(req,res)=>{
 res.redirect('/signin.html');
@@ -40,10 +40,10 @@ router.post('/signin',(req,res)=>{
     }
     req.session.user={ username, role};
     if(role=='student'){
-        res.redirect('./student/home');
+        res.redirect('/students/home');
     }
     else{
-        res.redirect('./teacher/home');
+        res.redirect('/teacher/home');
     }
 })
 router.get('/login',(req,res,next)=>{
@@ -54,7 +54,7 @@ router.post('/login',(req,res)=>{
 const useranme=req.body.useranme;
 const password=req.body.password;
 const role=req.body.role;
-const user=users[useranme];
+const user=users[username];
 if(user && user.password== password){
     req.session.user={
         useranme,
@@ -62,17 +62,17 @@ if(user && user.password== password){
     }
 
 if(role=="student"){
-    req.redirect('./student/home');
+    res.redirect('/students/home');
 }
 else{
-    req.redirect('./teacher/home');
+    res.redirect('/teacher/home');
 }
+console.log(req.body);
+// console.log(user);
 }
 else{
-    req.redirect('/login.html');
+    res.redirect('/login.html');
 }
 })
 
-module.exports={
-     router ,authentication,
-}
+module.exports=router;
