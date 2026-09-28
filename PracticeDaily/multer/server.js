@@ -7,7 +7,7 @@ app.use(express.json());
 const authROute=require('./routes/auth.js');
 const path=require('path');
 
-// app.use(express.static(path.join(__dirname,)))
+app.use(express.static(path.join(__dirname,'uploads')));
 
 
 app.get('/',(req,res)=>{
