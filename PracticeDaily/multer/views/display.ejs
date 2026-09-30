@@ -6,6 +6,13 @@
     <title>Display Image</title>
 </head>
 <body>
-    <img src="/<%=avatar%>">
+       <% files.avatar.forEach(file=> { %>
+        <img src="/<%=file.filename%>">
+        <%})%>
+       <% files.profile.forEach(file=> { %>
+        <img src="/<%=file.filename%>">
+        <%})%>
+
+  
 </body>
 </html>
