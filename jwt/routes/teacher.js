@@ -1,25 +1,23 @@
 const express=require('express');
-// const app=express();
-// console.log(express);
+
 const router=express.Router();
 
 router.use(express.urlencoded({ extended: true }));
 
-// router.use(express.json());
-// app.use(cors());
+// const verifyToken=require('verifyToken');
 
 router.use(express.static('pulbc'));
 router.use(express.json());
 
 router.get('/',(req,res)=>{
-if(req.session.role!='teacher')
+if(req.body.role!='teacher')
    return res.redirect('/students/home');
 
 res.redirect('/teacherHome.html');
 })
 
 router.get('/home',(req,res)=>{
-if(req.session.role!='students')
+if(req.body.role!='students')
 
    return res.redirect('/students/home');
 
@@ -29,7 +27,7 @@ res.redirect('/teacherHome.html');
 });
 
 router.get("/role",(req,res)=>{
-if(req.session.role!='students')
+if(req.body.role!='students')
 
    return res.redirect('/students/home');
 

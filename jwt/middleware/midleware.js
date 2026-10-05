@@ -8,7 +8,9 @@ function verifyToken(req, res, next) {
 
     if (!token) {
 
-        return res.send("Token doesn't exist");
+        // return res.send("Token doesn't exist");
+        // return res.json({message: "Not Authenticate"});
+        return res.redirect('/signin.html');
 
     }
 
@@ -18,11 +20,13 @@ function verifyToken(req, res, next) {
         return next();
 
     }
+
     catch (error) {
 
-        res.clearCookies(Cookie_Name);
-        return res.send("Cookie is deleted !");
-
+        res.clearCookie(Cookie_Name);
+        // return res.send("Cookie is deleted !");
+        // return res.json({message: "Not Authenticate"});
+        return res.redirect('/signin.html');
     }
 }
 module.exports = verifyToken;
