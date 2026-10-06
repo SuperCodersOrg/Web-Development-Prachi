@@ -8,19 +8,19 @@
 <body>
     <section>
         <h1>Signup</h1>
-        <form method="post" action="/auth/login">
+        <form method="POST" action="/auth/signin">
             <br><br>
             <label for="name">Teacher Name:</label>
-            <input type="text" id="Sname" placeholder="Enter Name">
+            <input type="text" id="Sname" placeholder="Enter Name" name="username">
 <br><br>
             <label for="pass">Password:</label>
-            <input type="password" id="pass" placeholder="password" require>
+            <input type="password" id="pass" placeholder="password" name="password" require>
 <br><br>
             <h3>Select role: </h3>
             <!-- <a href="teacher">Teacher</a>
             <a href="student">Student</a> -->
 
-            <input type="text" placeholder="role" id="role">
+            <input type="text" placeholder="role" id="role" name="role">
             <input type="submit">
         </form>
        

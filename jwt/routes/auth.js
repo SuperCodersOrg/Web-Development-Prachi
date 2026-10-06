@@ -1,4 +1,5 @@
 const express = require('express');
+const jwt=require('jsonwebtoken');
 
 const router = express.Router();
 
@@ -7,11 +8,13 @@ router.use(express.json());
 router.use(express.static("public"));
 
 const cookie = require('cookie-parser');
-const verifyToken = require('./verifyToken');
+// const verifyToken = require('../middleware/midleware.js');
 
-app.use(cookie());
+// const app=express();
+// app.use(cookie());
+// const authoRoutes=require('');
 
-app.use('/auth', authoRoutes);
+// router.use( verifyToken);
 
 const users = {
     student: { password: "787", role: "student" },
@@ -21,12 +24,12 @@ const users = {
 const Cookie_Name = 'accessToken';
 const Secret_Token = process.env.Secret_Token || "generating-secret-key-firstTime";
 
-
 router.get('/signin', (req, res) => {
     res.redirect('/signin.html');
 })
-router.post('/signin', (req, res) => {
 
+router.post('/signin', (req, res) => {
+    console.log("user info",req.body);
     const username = req.body.username;
     const password = req.body.password;
     const role = req.body.role;
@@ -50,7 +53,10 @@ router.post('/signin', (req, res) => {
 
     const jwtToken = jwt.sign(payload, Secret_Token);
 
-    res.cookie(Cookie_Name, jwtToken);
+    res.cookie(Cookie_Name, jwtToken, {
+        httpOnly: true,
+        maxAge: 60 * 60 * 1000
+    });
 
     if (role == 'student') {
         res.redirect('/students/home');
@@ -61,6 +67,7 @@ router.post('/signin', (req, res) => {
 })
 
 router.get('/login',(req, res) => {
+    console.log("hdi");
     res.redirect('/login.html');
 })
 
@@ -93,7 +100,7 @@ router.post('/login',(req, res) => {
     }
 })
 
-router.post('/logout',verifyToken,(req, res) => {
+router.post('/logout',(req, res) => {
     res.clearCookie(Cookie_Name);
     return res.redirect('/login.html');
 })
