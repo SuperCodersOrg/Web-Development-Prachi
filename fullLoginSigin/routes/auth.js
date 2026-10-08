@@ -36,7 +36,7 @@ router.post('/login',(req,res)=>{
         return res.send("Enter the information");
     } 
     else{
-    res.redirect('/home');
+    res.redirect('/home.ejs');
     }
 })
 
