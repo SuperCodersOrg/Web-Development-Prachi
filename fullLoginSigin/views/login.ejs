@@ -6,7 +6,7 @@
     <title>Login</title>
 </head>
 <body>
-    <form method="POST" action="/login">
+    <form method="POST" action="/auth/login">
         <label for="username">Username: </label>
         <input type="text" placeholder="username" id="username" name="username">
 
@@ -19,6 +19,9 @@
         <input type="password" placeholder="password" id="password" name="password" required>
 
         <br/><br/>
+
+        <a href="/auth/forgot">forgot password</a>
+        <a href="/auth/changePass">Change Password</a>
         <input type="submit" placeholder="Submit">
     </form>
 </body>
