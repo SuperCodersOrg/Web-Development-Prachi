@@ -8,16 +8,28 @@ router.use(express.json());
 router.use(express.urlencoded({extended: true }));
 router.use(express.static("public"));
 
-const { createSession } = require('../sessionMiddleware/sessionMiddleware');
+
+const { createSession} = require('../sessionMiddleware/sessionMiddleware');
 // router.use(createSession);
+
+const { checkValidation } = require('../sessionMiddleware/sessionMiddleware.js');
+
+const { session } = require('../sessionMiddleware/sessionMiddleware.js');
+
+const { sessionExpiration } = require('../sessionMiddleware/sessionMiddleware.js');
 
 router.get('/login',(req,res)=>{
     res.render('login');
 })
-router.post('/login',(req,res)=>{
+router.post('/login',checkValidation,(req,res)=>{
     
-    const { username, password } = req.body;
+    if(req.session){
+        
+    res.redirect('/dashboard');
 
+    }
+
+    const { username, password, email } = req.body;
 
     if (!username || !password) {
         return res.send('Enter the information');
@@ -32,22 +44,22 @@ router.post('/login',(req,res)=>{
     }
 
      const user = {
-        username: username,
-        email: email,
-        password: password
+        username: userData.username,
+        email: userData.email,
+        password: userData.password
     }
     
     createSession(res,user);
-    res.redirect('/dashboard');
+   
     console.log(req.body);
-    // res.redirect('/dashboard');
+    res.redirect('/dashboard');
    
 
 })
 router.get('/signin',(req,res)=>{
     res.render('signin');
 })
-router.post('/signin',(req,res)=>{
+router.post('/signin',checkValidation,(req,res)=>{
     
     const file = fs.readFileSync(path.join(__dirname,'..','data','userinfo.json'),'utf8');
     const parseFileData = JSON.parse(file);
@@ -89,6 +101,30 @@ router.post('/signin',(req,res)=>{
         res.send("Already present");
     
 
+
+})
+
+router.get('/logout',(req,res)=>{
+
+    res.render('logout');
+
+})
+
+router.post('/logout',(req,res)=>{
+    const sessionId = req.cookies.sessionId;
+
+    delete session[sessionId];
+
+    res.clearCookie('sessionId',{
+        httpOnly: true,
+        secure: false,
+        sameSite: 'lax'
+    })
+
+    console.log("session id ",sessionId);
+    console.log("cookies are cleared",req.cookies);
+
+    return res.send('Successfully Logout!');
 
 })
 module.exports = router;
