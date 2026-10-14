@@ -8,8 +8,8 @@ router.use(express.json());
 router.use(express.urlencoded({extended: true }));
 router.use(express.static("public"));
 
-const { createSession } = require('./sessionMiddleware/sessionMiddleware.js');
-app.use(createSession);
+const { createSession } = require('../sessionMiddleware/sessionMiddleware');
+// router.use(createSession);
 
 router.get('/login',(req,res)=>{
     res.render('login');
@@ -30,8 +30,14 @@ router.post('/login',(req,res)=>{
        if (!userData) {
         return res.send('Invalid username or password');
     }
+
+     const user = {
+        username: username,
+        email: email,
+        password: password
+    }
     
-    createSession(res,{username , password});
+    createSession(res,user);
     res.redirect('/dashboard');
     console.log(req.body);
     // res.redirect('/dashboard');
@@ -58,6 +64,7 @@ router.post('/signin',(req,res)=>{
     const user = {
         username: username,
         email: email,
+        password: password
         
     }
 
@@ -69,7 +76,7 @@ router.post('/signin',(req,res)=>{
 
         if(!userData){
 
-        createSession(res,{user});
+        createSession(res,user);
         parseFileData.push(user);
         fs.writeFileSync(path.join(__dirname, '..', 'data', 'userinfo.json'), JSON.stringify(parseFileData, null, 2));
         

@@ -26,6 +26,8 @@ app.get('/',(req,res)=>{
 
 app.use(cookieParser());
 // app.use(sessionMiddleWare);
+// app.use(sessionMiddleWare);
+
 app.use('/auth',authRoutes);
 app.use('/',DashboardRoutes);
 
