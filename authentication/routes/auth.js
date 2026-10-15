@@ -21,7 +21,7 @@ const { sessionExpiration } = require('../sessionMiddleware/sessionMiddleware.js
 router.get('/login',(req,res)=>{
     res.render('login');
 })
-router.post('/login',checkValidation,(req,res)=>{
+router.post('/login',checkValidation,sessionExpiration,(req,res)=>{
     
     if(req.session){
         
@@ -49,8 +49,8 @@ router.post('/login',checkValidation,(req,res)=>{
         password: userData.password
     }
     
+    console.log(req.session);
     createSession(res,user);
-   
     console.log(req.body);
     res.redirect('/dashboard');
    

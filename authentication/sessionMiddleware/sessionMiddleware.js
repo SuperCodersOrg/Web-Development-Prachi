@@ -1,5 +1,8 @@
 const crypto = require('crypto'); 
-const session = {};
+const session = {
+
+};
+
 
 function createSession(res, userData){
     const sessionId = crypto.randomBytes(32).toString('hex');
@@ -48,7 +51,7 @@ function sessionExpiration(req,res,next){
 
         // const sessionId = req.cookies.sessionId;
 
-
+console.log(session);
         if(!userSEssion){
        return res.status(401).send('Session expired');
         }
