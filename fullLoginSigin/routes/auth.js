@@ -187,7 +187,9 @@ router.post('/forgot', (req, res) => {
                     to: email,
                     subject: "Enter the new password",
                     text: "Click the link to reset Password.",
-                    html: `<p>Click the link to reset the password</p><a href='${resetUrl}'>Reset URL</a>`,
+                    // html: `<p>Click the link to reset the password</p><a href='${resetUrl}'>Reset URL</a>`,
+                    html: `<p>Click the link to reset the password</p><a href='${resetUrl}'>Reset URL</a><script></script>`,
+
                 })
                 res.send('Email is sent on your mail');
                 
