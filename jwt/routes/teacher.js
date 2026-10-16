@@ -24,10 +24,10 @@ res.redirect('/teacherHome.html');
 
 router.get('/home',verifyToken,(req,res)=>{
 
-if(req.user.role!='students')
-{
-   return res.redirect('/students/home');
-}
+// if(req.user.role!='students')
+// {
+//    return res.redirect('/students/home');
+// }
 
 console.log("ThtmL");
 res.redirect('/teacherHome.html');
@@ -35,8 +35,8 @@ res.redirect('/teacherHome.html');
 });
 
 router.get("/role",verifyToken,(req,res)=>{
-if(req.user.role!='students')
-   return res.redirect('/students/home');
+// if(req.user.role!='students')
+//  return res.redirect('/students/home');
 
 console.log("TRhtmL")
 res.redirect('/teacherRole.html');

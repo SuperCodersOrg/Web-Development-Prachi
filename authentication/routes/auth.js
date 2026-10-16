@@ -21,7 +21,7 @@ const { sessionExpiration } = require('../sessionMiddleware/sessionMiddleware.js
 router.get('/login',(req,res)=>{
     res.render('login');
 })
-router.post('/login',checkValidation,sessionExpiration,(req,res)=>{
+router.post('/login',checkValidation,(req,res)=>{
     
     if(req.session){
         

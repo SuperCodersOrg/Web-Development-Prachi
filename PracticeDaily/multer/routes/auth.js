@@ -5,7 +5,7 @@ const router= express.Router();
 const path=require('path');
 
 const storage=multer.diskStorage({
-    destination:function(req,file,cb){
+    destination: function(req,file,cb){
         cb(null,'uploads/')
     },
     filename: function(req,file,cb){
@@ -13,7 +13,8 @@ const storage=multer.diskStorage({
         cb(null,file.originalname);
     }
 })
-const upload=multer({storage: storage,
+const upload=multer({
+    storage: storage,
     limits:{fileSize: 4*1024*1024},
     fileFilter:(req,file,cb)=>{
         const extension= path.extname(file.originalname).toLowerCase();
@@ -46,5 +47,9 @@ router.post('/login',upload.fields([{name:'avatar',maxCount:2},{name: 'profile',
     // res.render('display',{avatar: req.files.avatar[0].filename});
     res.render('display',{files:req.files});
 });
+
+// router.post('/login',upload.single('avatar'),(req,res)=>{
+//     res.render('display',{filename : req.file});
+// })
 
 module.exports=router;

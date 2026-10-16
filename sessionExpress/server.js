@@ -72,14 +72,6 @@ app.use('/auth', authoRoutes);
 app.use('/students',authoRoutes,studentRoutes);
 app.use('/teacher',authoRoutes,teacherRoue);
 
-// app.get('/student',(req,res)=>{
-//     // res.send("she talked bout he nothing");
-//     res.redirect();
-// })
-// app.get('/roles',(req,res)=>{
-//     // res.send(" provided");
-//     res.redirect('publc/teacherRole.html');
-// })
 
 app.listen(port,(req,res)=>{
     console.log("Sever is on load!");

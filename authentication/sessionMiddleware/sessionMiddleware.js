@@ -65,6 +65,8 @@ console.log(session);
 
         delete session[sessionId];
 
+        req.session = null;
+
         res.clearCookie('sessionId',{
         httpOnly: true,
         secure: false,
@@ -72,7 +74,7 @@ console.log(session);
         })
         return res.status(401).send('session Expired');
     }
-    
+    req.session = userSEssion;
     next();
 
 }
