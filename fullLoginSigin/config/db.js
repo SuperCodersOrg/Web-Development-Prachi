@@ -1,18 +1,13 @@
-// const mongoose = require('mongoose');
-// // const connectDb = async ()=>{
-// //     try{
-        
-// //     }
-// //
 const mongoose = require('mongoose');
 const connectDb = async ()=>{
 try{
     
-    await mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost:27017");
-    console.log(mongoose);
+    await mongoose.connect(process.env.MONGODB_URL );
+    console.log("momnggodb connected");
 }
 catch(err){
-    console.log("error is: ", err);
+    console.log("error is: ", err.name);
+    console.log(err.message);
 }
 
 }

@@ -14,7 +14,9 @@ const path=require('path');
 const authRoutes=require("./routes/auth.js");
 const romeRoutes = require("./routes/home.js");
 
-require('dotenv').config;
+const User = require('./Modles/user.js');
+
+require('dotenv').config();
 const connectDb = require('./config/db.js');
 
 app.use(express.json());

@@ -16,7 +16,7 @@ const bcrypt = require('bcrypt');
 const Cookie_Name = 'ecom-cookie';
 const cookie_Security_Key = 'no-one-can-ever-guess-me';
 
-
+const User = require('../Modles/user');
 
 router.use(express.json());
 
@@ -37,6 +37,7 @@ router.post('/login', (req, res) => {
     const username = req.body.username;
     const email = req.body.email;
     const password = req.body.password;
+
 
     let user = parsData.find((info) => info.username == username && info.password == password);
     console.log("user exists", user);
@@ -73,7 +74,7 @@ router.get('/signin', (req, res) => {
     res.render('signin');
 
 })
-router.post('/signin', (req, res) => {
+router.post('/signin', async (req, res) => {
 
     const file = fs.readFileSync(path.join(__dirname, '..', 'data', 'userinfo.json'), 'utf8');
     const parsData = JSON.parse(file);
@@ -86,6 +87,18 @@ router.post('/signin', (req, res) => {
         return res.send("Enter the information");
     }
 
+    const existingUser = await User.findOne({email});
+    if(existingUser){
+        return res.status(404).send('Email already registered');
+    }
+
+    const hashPassword = await bycrypt.hash(password,10);
+
+    const uu = await User.create({
+        username,
+        email,
+        password: hashPassword
+    });
     const payload = {
         username : req.body.username,
         email : req.body.email,
