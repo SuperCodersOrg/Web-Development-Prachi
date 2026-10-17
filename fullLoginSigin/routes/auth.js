@@ -92,7 +92,7 @@ router.post('/signin', async (req, res) => {
         return res.status(404).send('Email already registered');
     }
 
-    const hashPassword = await bycrypt.hash(password,10);
+    const hashPassword = await bcrypt.hash(password,10);
 
     const uu = await User.create({
         username,
@@ -229,7 +229,7 @@ router.get('/reset/:token', (req, res) => {
 
 })
 
-router.post('/reset', (req, res) => {
+router.post('/reset', async (req, res) => {
 
     console.log("token", req.body);
     // console.log(req.params.token)
@@ -256,119 +256,131 @@ router.post('/reset', (req, res) => {
     //
 })
 
-// router.get('/changePass',(req,res)=>{
+router.get('/changePass',(req,res)=>{
 
-//     // console.log("cahneged");
-//     res.render('changePass');
+    // console.log("cahneged");
+    res.render('changePass');
 
-// })
+})
 
-// router.post('/changePass',(req,res)=>{
+router.post('/changePass', async (req,res)=>{
 
-//     const file=fs.readFileSync(path.join(__dirname,'..','data','userinfo.json'),'utf8');
-// const parsData=JSON.parse(file);
+    const file=fs.readFileSync(path.join(__dirname,'..','data','userinfo.json'),'utf8');
+const parsData=JSON.parse(file);
 
-// const username=req.body.username;
-// const email = req.body.email;
-// // const password = req.body.password;
+const username=req.body.username;
+const email = req.body.email;
+// const password = req.body.password;
 
-// console.log(req.body.username);
-// // console.log(req.body.password);
-// console.log(req.body.email);
+const existingUser = await User.findOne({email});
+    if(existingUser){
+        return res.status(404).send('Email already registered');
+    }
 
-// let user=parsData.find((info)=> info.username == username && info.email == email );
-// // console.log("user exists",user);
+    const hashPassword = await bcrypt.hash(password,10);
 
-// const serverEmail='manchandaprachi69@gmail.com';
-// const serverEmailPass='eulk pyip rmzy odes';
-
-// if(!username  || !email){
-
-//     console.log("Enter info to forget information");
-//     return res.send("redirect to sign page as user doesn't exist");
-
-// } 
-
-// else{
-//     const transporter= nodeMailer.createTransport({
-//         service: 'gmail',
-//         auth: {
-
-//             user: serverEmail,
-//             pass: serverEmailPass,
-
-//         },
-//     })
-
-//     // if(email == serverEmail || password == serverEmailPass){
-//     //     res.render('resetPassword',{
-//     //         error: true,
-//     //         message: "Email is not configerated"
-//     //     })
-//     // }
-
-//     if(user){
-
-//         const token = crypto.randomBytes(32).toString('hex');
-//         const hashToken = bcrypt.hash(token,10);
-
-//         console.log(token);
-//         const baseUrl = `http://localhost:${2700}`;
-//         const resetUrl = `${baseUrl}/auth/reset/${token}`;
-
-//         console.log(resetUrl);
-//         user.token = hashToken;
-//         user.expiryTime = Date.now() + 60 * 60 * 1000;
-
-//         try{
-//         transporter.sendMail({
-//             from: serverEmail,
-//             to: email,
-//             subject: "Enter the new password",
-//             text: "Click the link to reset Password.",
-//             html: `<p>Click the link to reset the password</p><a href='${resetUrl}'>Reset URL</a>`,
-//         }) 
-//         res.send('Email is sent on your mail');
-//         // res.render('resetPassword');
-//         console.log("Email sent");
-//         console.log(email);
-//         }
-//         catch(error){
-
-//             console.log(error);
-//             delete user.token;
-//             delete user.expiryTime;
-
-//         }
-//     }
-// }
+    const userDetails = await User.create({
+        username,
+        email,
+        password: hashPassword
+    });
 
 
+console.log(req.body.username);
+// console.log(req.body.password);
+console.log(req.body.email);
 
-//     console.log("perhaps",req.body);
+let user=parsData.find((info)=> info.username == username && info.email == email );
+// console.log("user exists",user);
 
-//     console.log("token",req.body);
+const serverEmail=porcess.env.serverEmail;
+const serverEmailPass=process.env.serverEmailPass;
 
-//     // const file=fs.readFileSync(path.join(__dirname,'..','data','userinfo.json'),'utf8');
-//     // const parsData=JSON.parse(file);
+if(!username  || !email){
 
-//     const newPass = req.body.password;
-//     const rePass = req.body.rePassword;
+    console.log("Enter info to forget information");
+    return res.send("redirect to sign page as user doesn't exist");
 
-//     if(newPass ==rePass){
+} 
 
-//         res.send("done");//redirect.
+else{
+    const transporter= nodeMailer.createTransport({
+        service: 'gmail',
+        auth: {
 
-//     }
-//     else{
+            user: serverEmail,
+            pass: serverEmailPass,
 
-//         res.send("Password Doesn't match");
+        },
+    })
 
-//     }
+    // if(email == serverEmail || password == serverEmailPass){
+    //     res.render('resetPassword',{
+    //         error: true,
+    //         message: "Email is not configerated"
+    //     })
+    // }
 
-//     res.send("cahneged");
+    if(user){
 
-// })
+        const token = crypto.randomBytes(32).toString('hex');
+        const hashToken = bcrypt.hash(token,10);
+
+        console.log(token);
+        const baseUrl = `http://localhost:${2700}`;
+        const resetUrl = `${baseUrl}/auth/reset/${token}`;
+
+        console.log(resetUrl);
+        user.token = hashToken;
+        user.expiryTime = Date.now() + 60 * 60 * 1000;
+
+        try{
+        transporter.sendMail({
+            from: serverEmail,
+            to: email,
+            subject: "Enter the new password",
+            text: "Click the link to reset Password.",
+            html: `<p>Click the link to reset the password</p><a href='${resetUrl}'>Reset URL</a>`,
+        }) 
+        res.send('Email is sent on your mail');
+        // res.render('resetPassword');
+        console.log("Email sent");
+        console.log(email);
+        }
+        catch(error){
+
+            console.log(error);
+            delete user.token;
+            delete user.expiryTime;
+
+        }
+    }
+}
+
+    console.log("perhaps",req.body);
+
+    console.log("token",req.body);
+
+    // const file=fs.readFileSync(path.join(__dirname,'..','data','userinfo.json'),'utf8');
+    // const parsData=JSON.parse(file);
+
+    const newPass = req.body.password;
+    const rePass = req.body.rePassword;
+
+    if(newPass ==rePass){
+
+        res.send("done");//redirect.
+
+    }
+    else{
+
+        res.send("Password Doesn't match");
+
+    }
+
+    res.send("cahneged");
+
+})
 
 
 router.get('/logout', (req, res) => {

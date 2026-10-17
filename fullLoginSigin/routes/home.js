@@ -15,6 +15,6 @@ router.use( verifyToken);
 router.get('/',(req,res)=>{
     console.log("udu");
 console.log(req.body);
-    res.render('home',{username: "prachi"});
+    res.render('home',{username: username});
 })
 module.exports = router;
